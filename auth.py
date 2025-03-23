@@ -11,5 +11,5 @@ def make_header():
 def make_cookies():
     '''로그인 쿠키'''
     return {
-        "bojautologin": os.getenv('AUTO_LOGIN')
+        "OnlineJudge": os.getenv('AUTO_LOGIN')
     }
