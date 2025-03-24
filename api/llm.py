@@ -61,5 +61,4 @@ Always start writing code with ```python""",
 
 
 if __name__ == "__main__":
-    print(get_answer_by_llm(conv_problem_to_prompt(Problem(1000))))
-    # print(conv_problem_to_prompt(Problem(1000)))
+    print(get_answer_by_llm("hello world"))
