@@ -14,7 +14,8 @@ def get_problems(se: requests.Session) -> Problems:
         se,
         # "https://www.acmicpc.net/problemset?sort=ac_desc&submit=fa,us&style=cs&style_if=nand", # 내가 아직 못 푼 문제
         # "https://www.acmicpc.net/problemset?sort=submit_desc&ac=0",  # 아직 아무도 못 푼 문제
-        "https://www.acmicpc.net/problemset?sort=no_asc&ac=1",  # 푼 사람이 한명인 문제
+        # "https://www.acmicpc.net/problemset?sort=no_asc&ac=1",  # 푼 사람이 한명인 문제
+        "https://www.acmicpc.net/problemset?sort=rac_desc&submit=us",  # 최근 풀린 문제 (&& 내가 재출한적 없는)
     )
     if doc == None:
         return None

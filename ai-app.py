@@ -6,7 +6,7 @@ from tqdm import tqdm
 from api.get_problem import get_problems, get_problem_by_id
 from api.llm import get_answer_by_llm, conv_problem_to_prompt
 from api.submit import solving_submit
-from api.user import get_user_info
+from api.already_solved import get_school_solve
 from salt.code_salt import source_code_salting
 
 
@@ -39,8 +39,8 @@ def push(
         result = solving_submit(session, problem_id, "close", salted_code, lang_code)
         print("푸시 성공" if result else "푸시 실패")
 
-        if result:
-            solved_problems.append(problem_id)
+        # if result:
+        #     solved_problems.append(problem_id)
 
         return result
     except Exception as e:
@@ -54,8 +54,9 @@ def main():
     session = requests.Session()
 
     # 이미 해결한 문제 가져오기
-    user_name = os.getenv("USER_NAME")
-    solved_problems = get_user_info(session, user_name)["solved_problems"]
+    school_id = os.getenv("SCHOOL_ID")
+    solved_problems = get_school_solve(school_id)
+
     print(f"이미 해결한 문제 수: {len(solved_problems)}")
 
     # 문제 목록 가져오기
@@ -64,6 +65,9 @@ def main():
 
     # 기본 언어 설정 (파이썬)
     lang_code = 28  # Python 3 언어 코드
+
+    # 변수 추가: 이전 문제를 처리했는지 여부를 추적
+    processed_previous = False
 
     # tqdm으로 진행상황 시각화
     for i, problem in enumerate(
@@ -76,10 +80,13 @@ def main():
             tqdm.write(f"문제 {problem_id}는 이미 해결됨, 건너뜀")
             continue
 
-        # 첫 번째 문제가 아니면 대기
-        if i > 0:
+        # 첫 번째 문제가 아니고 이전 문제를 처리했으면 대기
+        if processed_previous:
             tqdm.write(f"{SLEEP_TIME}초 대기 중...")
             wait_with_progress(SLEEP_TIME)
+
+        # 이번 문제를 처리함을 표시
+        processed_previous = True
 
         # 문제 상세 정보 가져오기
         tqdm.write(f"문제 {problem_id} 상세 정보 가져오는 중...")
