@@ -32,7 +32,7 @@ def get_answer_by_llm(problem: str) -> str:
     """문제 번호와 코드를 받아서 답을 리턴합니다."""
 
     completion = client.chat.completions.create(
-        model="meta-llama-3.3-70b-instruct",
+        model="deepseek-r1",
         messages=[
             {
                 "role": "system",
@@ -51,6 +51,9 @@ Always start writing code with ```python""",
     )
 
     answer = completion.choices[0].message.content
+
+    # r1의 경우 먼저 <think>부터 </think>까지의 내용을 제거합니다.
+    answer = answer.split("<think>")[1].split("</think>")[-1]
 
     # ```python에서 ``` 사이의 코드만 가져옵니다.
 
