@@ -2,7 +2,6 @@ from typing import NamedTuple
 import requests
 from api.parser import get_doc, raw_inner_text
 from utils import try_get
-from lxml import etree
 
 
 class Problems(NamedTuple):
@@ -74,4 +73,6 @@ if __name__ == "__main__":
     print(p)
 
     p1 = get_problem_by_id(session, p.problems[0])
+    # {'problem_id': 11382, 'title': '꼬마 정민', 'description': '꼬마 정민이는 이제 A + B 정도는 쉽게 계산할 수 있다. 이제 A + B + C를 계산할 차례이다!', 'input': '첫 번째 줄에 A, B, C (1 ≤ A, B, C ≤ 10<sup>12</sup>)이 공백을 사이에 두고 주어진다.', 'output': 'A+B+C의 값을 출력한다.', 'sample_input': '77 77 7777\n', 'sample_output': '7931\n', 'hint': ''}
+
     print(p1)

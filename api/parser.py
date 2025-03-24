@@ -31,4 +31,5 @@ def raw_inner_text(tag, tag_name):
         .strip()
         .strip(f"<{tag_name}>")
         .strip(f"</{tag_name}>")
+        .strip()
     )
