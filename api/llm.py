@@ -58,3 +58,8 @@ Always start writing code with ```python""",
     # ```python에서 ``` 사이의 코드만 가져옵니다.
 
     return answer.split("```python")[1].split("```")[0]
+
+
+if __name__ == "__main__":
+    print(get_answer_by_llm(conv_problem_to_prompt(Problem(1000))))
+    # print(conv_problem_to_prompt(Problem(1000)))
