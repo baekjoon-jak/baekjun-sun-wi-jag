@@ -12,7 +12,9 @@ def get_problems(se: requests.Session) -> Problems:
     """사용자가 아직 풀지 않은 문제 리스트를 가져옵니다."""
     doc = get_doc(
         se,
-        f"https://www.acmicpc.net/problemset?sort=ac_desc&submit=fa,us&style=cs&style_if=nand",
+        # "https://www.acmicpc.net/problemset?sort=ac_desc&submit=fa,us&style=cs&style_if=nand", # 내가 아직 못 푼 문제
+        # "https://www.acmicpc.net/problemset?sort=submit_desc&ac=0",  # 아직 아무도 못 푼 문제
+        "https://www.acmicpc.net/problemset?sort=no_asc&ac=1",  # 푼 사람이 한명인 문제
     )
     if doc == None:
         return None
