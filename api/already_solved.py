@@ -64,5 +64,8 @@ def get_school_solve(school_id: int) -> set:
 
 
 if __name__ == "__main__":
+    print("__main__")
     # HSCHS
     school_problems = get_school_solve(712)
+
+    print(school_problems)
