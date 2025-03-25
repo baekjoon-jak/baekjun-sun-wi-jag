@@ -30,7 +30,9 @@ def log_to_influxdb(ranks: list[SchoolRank], solved_problems: int):
         client.switch_database(dbname)
 
     # Prepare data points
-    current_time = datetime.datetime.now(datetime.UTC).isoformat()
+    # current_time = datetime.datetime.now(datetime.UTC).isoformat()
+    # for backward compatibility
+    current_time = datetime.datetime.utcnow().isoformat()
     points = []
 
     for rank_obj in ranks:
