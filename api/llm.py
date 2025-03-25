@@ -2,6 +2,10 @@ from openai import OpenAI
 import os
 from api.get_problem import Problem
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 client = OpenAI(
     base_url="https://api.friendli.ai/serverless/v1",
     api_key=os.environ.get("FRIENDLI_TOKEN"),

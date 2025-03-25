@@ -13,6 +13,8 @@ from salt.code_salt import source_code_salting
 # 설정 변수
 SLEEP_TIME = 60  # 한 문제당 대기 시간 (초)
 
+load_dotenv()
+
 
 def wait_with_progress(seconds):
     """진행 표시줄이 있는 대기 함수"""
