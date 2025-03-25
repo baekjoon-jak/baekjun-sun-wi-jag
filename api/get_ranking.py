@@ -1,9 +1,9 @@
 import requests
+from typing import Union, List, Optional
 from api.parser import get_doc
 
 
-def get_school_rank(se: requests.Session, school_name: int) -> int | None:
-    """학교_ID로 소속된 학생 ID를 가져옵니다"""
+def get_school_rank(se: requests.Session, school_name: int) -> Union[int, None]:
     doc1 = get_doc(se, f"https://www.acmicpc.net/ranklist/high/1")
     doc2 = get_doc(se, f"https://www.acmicpc.net/ranklist/high/2")
     doc3 = get_doc(se, f"https://www.acmicpc.net/ranklist/high/3")
@@ -37,8 +37,7 @@ class SchoolRank:
         self.rank = rank
 
 
-def get_school_ranks(se: requests.Session) -> list[SchoolRank] | None:
-    """학교_ID로 소속된 학생 ID를 가져옵니다"""
+def get_school_ranks(se: requests.Session) -> List[SchoolRank]:
     doc1 = get_doc(se, f"https://www.acmicpc.net/ranklist/high/1")
     doc2 = get_doc(se, f"https://www.acmicpc.net/ranklist/high/2")
     doc3 = get_doc(se, f"https://www.acmicpc.net/ranklist/high/3")
