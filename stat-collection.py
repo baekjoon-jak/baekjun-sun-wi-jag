@@ -4,13 +4,16 @@ import requests
 import csv
 import os
 import datetime
+from pathlib import Path
 
 
 def log_to_csv(problems_count, school_rank):
     """
     Log data to CSV file with timestamp, problems count and school ranking
     """
-    file_path = "./boj-swj-log.csv"
+
+    dir = str(Path(__file__).parent)
+    file_path = os.path.join(dir, "boj-swj-log.csv")
     file_exists = os.path.isfile(file_path)
 
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
